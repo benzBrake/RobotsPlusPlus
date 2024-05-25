@@ -1,16 +1,6 @@
 <?php
-
-/**
- * 蜘蛛来访日志插件，记录蜘蛛爬行的时间及其网址
- *
- * @package RobotsPlusPlus
- * @author  Ryan, YoviSun, Shion
- * @version 2.0.3
- * @update: 2020.05.30
- * @link http://doufu.ru
- */
-
-include 'common.php';
+if (!defined('__TYPECHO_ADMIN__'))
+    include 'common.php';
 include 'header.php';
 include 'menu.php';
 if (!defined('__TYPECHO_ROOT_DIR__')) {
@@ -29,11 +19,11 @@ $options = Typecho_Widget::widget('Widget_Options');
                         <input type="hidden" name="panel" value="RobotsPlusPlus/Logs.php"/>
                         <div class="operate">
                             <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox"
-                                                                                   class="typecho-table-select-all"/></label>
+                                                                                     class="typecho-table-select-all"/></label>
                             <div class="btn-group btn-drop">
                                 <button class="btn dropdown-toggle btn-s" type="button"><i
-                                            class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i
-                                            class="i-caret-down"></i></button>
+                                        class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i
+                                        class="i-caret-down"></i></button>
                                 <ul class="dropdown-menu">
                                     <li><a lang="<?php _e('你确认要删除这些记录吗?'); ?>"
                                            href="<?php $security->index('/action/robots-logs-edit?do=delete'); ?>"><?php _e('删除'); ?></a>
@@ -44,14 +34,15 @@ $options = Typecho_Widget::widget('Widget_Options');
                         <div class="search" role="search">
                             <div class="search-ip-group">
                                 <input type="text" class="search-ip text-s"
-                                       value="<?php echo htmlspecialchars($request->ip); ?>" name="ip"
+                                       value="<?php echo htmlspecialchars($request->ip ?? ''); ?>" name="ip"
                                        placeholder="<?php _e("请输入 IP 搜索"); ?>"/>
                                 <a class="clear-search-ip" href="#" title="<?php _e("取消 IP 筛选"); ?>">x</a>
                             </div>
                             <select class="search-bot" name="bot">
                                 <option value=""><?php _e('所有'); ?></option>
                                 <?php foreach (RobotsPlusPlus_Util::getBotsList() as $id => $name) : ?>
-                                    <option value="<?php echo $id; ?>" <?php if ($request->get('bot') == $id) : ?> selected="true" <?php endif; ?>><?php echo $name; ?></option>
+                                    <option
+                                        value="<?php echo $id; ?>" <?php if ($request->get('bot') == $id) : ?> selected="true" <?php endif; ?>><?php echo $name; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <button type="submit" class="search-btn btn btn-s"><?php _e('筛选'); ?></button>
@@ -90,7 +81,7 @@ $options = Typecho_Widget::widget('Widget_Options');
                                         <td><input type="checkbox" value="<?php $robotsArchive->lid(); ?>"
                                                    name="lid[]"/></td>
                                         <td colspan="2"><a
-                                                    href="<?php echo str_replace("%23", "#", $robotsArchive->url); ?>"><?php echo urldecode(str_replace("%23", "#", $robotsArchive->url)); ?></a>
+                                                href="<?php echo str_replace("%23", "#", $robotsArchive->url); ?>"><?php echo urldecode(str_replace("%23", "#", $robotsArchive->url)); ?></a>
                                         </td>
                                         <td></td>
                                         <td data-bot="<?php $robotsArchive->bot(); ?>"
@@ -116,11 +107,11 @@ $options = Typecho_Widget::widget('Widget_Options');
                     <div class="typecho-list-operate clearfix">
                         <div class="operate">
                             <label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox"
-                                                                                   class="typecho-table-select-all"/></label>
+                                                                                     class="typecho-table-select-all"/></label>
                             <div class="btn-group btn-drop">
                                 <button class="btn dropdown-toggle btn-s" type="button"><i
-                                            class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i
-                                            class="i-caret-down"></i></button>
+                                        class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i
+                                        class="i-caret-down"></i></button>
                                 <ul class="dropdown-menu">
                                     <li><a lang="<?php _e('你确认要删除这些记录吗?'); ?>"
                                            href="<?php $security->index('/action/robots-logs-edit?do=delete'); ?>"><?php _e('删除'); ?></a>

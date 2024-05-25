@@ -5,8 +5,8 @@
  *
  * @package RobotsPlusPlus
  * @author  Ryan, YoviSun, Shion
- * @version 2.0.7
- * @update: 2024.05.10
+ * @version 2.0.8
+ * @update: 2024.05.25
  * @link http://doufu.ru
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) {
