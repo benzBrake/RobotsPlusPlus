@@ -36,7 +36,7 @@ class RobotsPlusPlus_Util
         Helper::removeAction('robots-logs-edit');
         if ($isDrop == 1) {
             $prefix = $db->getPrefix();
-            $db->query("DROP TABLE `{$prefix}robots_logs`", Typecho_Db::WRITE);
+            $db->query("DROP TABLE IF EXISTS `{$prefix}robots_logs`", Typecho_Db::WRITE);
             return "插件已被禁用，数据表已未清除";
         }
         return "插件已被禁用，数据表未被清除";
@@ -60,15 +60,14 @@ class RobotsPlusPlus_Util
                         ip TEXT,
                         ltime INTEGER)");
         }
-        if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter) {
+        if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter || "Mysqli" === $adapter)) {
             $db->query("CREATE TABLE IF NOT EXISTS " . $robots . " (
-                        `lid` int(10) unsigned NOT NULL auto_increment,
-                        `bot` varchar(16) default NULL,
-                        `url` varchar(128) default NULL,
-                        `ip` varchar(128) default NULL,
-                        `ltime` int(10) unsigned default '0',
-                        PRIMARY KEY  (`lid`)
-                    ) DEFAULT CHARSET=utf8mb4; AUTO_INCREMENT=1");
+                        `lid` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                        `bot` VARCHAR(16) DEFAULT NULL,
+                        `ltime` INT(10) UNSIGNED DEFAULT '0',
+                        `ip` VARCHAR(128) DEFAULT NULL,
+                        `url` VARCHAR(128) DEFAULT NULL
+                    ) DEFAULT CHARSET=utf8mb4;);
         }
     }
 
@@ -156,7 +155,7 @@ class RobotsPlusPlus_Util
     }
 
     /**
-     * 湖区插件配置
+     * 时区插件配置
      *
      * @return Widget_Options
      */
