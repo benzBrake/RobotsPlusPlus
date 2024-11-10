@@ -60,7 +60,7 @@ class RobotsPlusPlus_Util
                         ip TEXT,
                         ltime INTEGER)");
         }
-        if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter || "Mysqli" === $adapter)) {
+        if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter || "Mysqli" === $adapter) {
             $db->query("CREATE TABLE IF NOT EXISTS " . $robots . " (
                         `lid` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         `bot` VARCHAR(16) DEFAULT NULL,
