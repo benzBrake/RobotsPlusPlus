@@ -67,7 +67,7 @@ class RobotsPlusPlus_Util
                         `ltime` INT(10) UNSIGNED DEFAULT '0',
                         `ip` VARCHAR(128) DEFAULT NULL,
                         `url` VARCHAR(128) DEFAULT NULL
-                    ) DEFAULT CHARSET=utf8mb4;);
+                    ) DEFAULT CHARSET=utf8mb4");
         }
     }
 
